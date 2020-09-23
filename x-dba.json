@@ -1,0 +1,50 @@
+{
+	"dba1": {
+		"type": "pagelist",
+		"title": "DB Admin",
+		"items": [
+			"dba17",
+			"dba_field_domains_grid"
+		]
+	},
+	"dba_field_domains_grid": {
+		"type": "grid",
+		"static_rowset": {
+			"fields": [
+				{
+					"name": "name"
+				},
+				{
+					"name": "type"
+				}
+			]
+		},
+		"title": "Field Domains"
+	},
+	"dba17": {
+		"type": "split",
+		"item1": "dba_tables_grid",
+		"item2": "dba_fields_grid",
+		"title": "Tables & Fields",
+		"fixed_size": 187
+	},
+	"dba_tables_grid": {
+		"type": "grid",
+		"static_rowset": {
+			"fields": [
+				{
+					"name": "name"
+				}
+			]
+		}
+	},
+	"dba_fields_grid": {
+		"type": "grid",
+		"static_rowset": {
+			"fields": [
+				{"name": "name"},
+				{"name": "type"}
+			]
+		}
+	}
+}
