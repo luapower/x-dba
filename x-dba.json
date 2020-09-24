@@ -16,6 +16,9 @@
 				},
 				{
 					"name": "type"
+				},
+				{
+					"name": "description"
 				}
 			]
 		},
@@ -26,7 +29,7 @@
 		"item1": "dba_tables_grid",
 		"item2": "dba_fields_grid",
 		"title": "Tables & Fields",
-		"fixed_size": 187
+		"fixed_size": 162
 	},
 	"dba_tables_grid": {
 		"type": "grid",
@@ -34,16 +37,31 @@
 			"fields": [
 				{
 					"name": "name"
+				},
+				{
+					"name": "description"
 				}
 			]
 		}
 	},
 	"dba_fields_grid": {
 		"type": "grid",
+		"param_nav_gid": "dba_tables_grid",
+		"params": "table=name",
 		"static_rowset": {
 			"fields": [
-				{"name": "name"},
-				{"name": "type"}
+				{
+					"name": "table"
+				},
+				{
+					"name": "name"
+				},
+				{
+					"name": "type"
+				},
+				{
+					"name": "description"
+				}
 			]
 		}
 	}
