@@ -60,6 +60,10 @@
 					"name": "type"
 				},
 				{
+					"name": "not_null",
+					"type": "bool"
+				},
+				{
 					"name": "description"
 				}
 			]
