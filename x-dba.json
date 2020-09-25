@@ -34,6 +34,7 @@
 	"dba_tables_grid": {
 		"type": "grid",
 		"static_rowset": {
+			"pk": "name",
 			"fields": [
 				{
 					"name": "name"
@@ -61,7 +62,8 @@
 				},
 				{
 					"name": "not_null",
-					"type": "bool"
+					"type": "bool",
+					"default": true
 				},
 				{
 					"name": "description"
