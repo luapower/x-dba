@@ -4,15 +4,18 @@
 		"title": "DB Admin",
 		"items": [
 			"dba17",
-			"dba_field_domains_grid"
+			"dba_field_types_grid"
 		]
 	},
-	"dba_field_domains_grid": {
+	"dba_field_types_grid": {
 		"type": "grid",
 		"static_rowset": {
 			"fields": [
 				{
 					"name": "name"
+				},
+				{
+					"name": "sql"
 				},
 				{
 					"name": "type"
@@ -22,7 +25,7 @@
 				}
 			]
 		},
-		"title": "Field Domains"
+		"title": "Field Types"
 	},
 	"dba17": {
 		"type": "split",
@@ -50,6 +53,7 @@
 		"param_nav_gid": "dba_tables_grid",
 		"params": "table=name",
 		"static_rowset": {
+			"pk": "name",
 			"fields": [
 				{
 					"name": "table"
@@ -58,7 +62,10 @@
 					"name": "name"
 				},
 				{
-					"name": "type"
+					"name": "type",
+					"lookup_nav_gid": "dba_field_types_grid",
+					"lookup_col": "name",
+					"display_col": "name"
 				},
 				{
 					"name": "not_null",
@@ -66,9 +73,16 @@
 					"default": true
 				},
 				{
+					"name": "fk_table"
+				},
+				{
+					"name": "fk_field"
+				},
+				{
 					"name": "description"
 				}
 			]
-		}
+		},
+		"col.table.text": "Table"
 	}
 }
