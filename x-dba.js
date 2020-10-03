@@ -25,7 +25,7 @@
 				ft.field  = cg.cell_val(row, 'name')
 				if (row.is_new) {
 					let t = update({}, ft)
-					t.op = 'create_field'
+					t.op = 'add_field'
 					t.type     = cg.cell_val(row, 'type'    )
 					t.not_null = cg.cell_val(row, 'not_null')
 					t.fk_table = cg.cell_val(row, 'fk_table')
@@ -44,7 +44,7 @@
 					}
 					if (cg.cell_modified(row, 'type')) {
 						let t = update({}, ft)
-						t.op = 'change_field_type'
+						t.op = 'change_type'
 						t.type = cg.cell_val(row, 'type')
 						rows.push(t)
 					}

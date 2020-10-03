@@ -8,46 +8,6 @@
 			"dba20"
 		]
 	},
-	"dba_field_types_rowset": {
-		"type": "rowset",
-		"pk": "name",
-		"fields": {
-			"name": {},
-			"sql": {},
-			"type": {},
-			"description": {}
-		}
-	},
-	"dba_tables_rowset": {
-		"type": "rowset",
-		"pk": "name",
-		"fields": {
-			"name": {},
-			"description": {}
-		}
-	},
-	"dba_fields_rowset": {
-		"type": "rowset",
-		"pk": "table name",
-		"fields": {
-			"table": {
-				"fk_rowset": "dba_tables_rowset",
-				"fk_col": "name"
-			},
-			"name": {},
-			"type": {
-				"fk_rowset": "dba_field_types_rowset",
-				"fk_col": "name"
-			},
-			"not_null": {
-				"type": "bool",
-				"default": true
-			},
-			"fk_table": {},
-			"fk_field": {},
-			"description": {}
-		}
-	},
 	"dba_field_types_grid": {
 		"type": "grid",
 		"static_rowset": {
@@ -80,7 +40,7 @@
 		"param_nav_gid": "dba_schemas_grid",
 		"params": "schema=name",
 		"static_rowset": {
-			"pk": "name",
+			"pk": "schema name",
 			"fields": [
 				{
 					"name": "schema"
@@ -104,13 +64,18 @@
 		"param_nav_gid": "dba_tables_grid",
 		"params": "schema=schema table=name",
 		"static_rowset": {
-			"pk": "name",
+			"pk": "schema table name",
+			"index_col": "index",
 			"fields": [
 				{
 					"name": "schema"
 				},
 				{
 					"name": "table"
+				},
+				{
+					"name": "index",
+					"type": "number"
 				},
 				{
 					"name": "name"
@@ -231,7 +196,8 @@
 					"name": "type"
 				},
 				{
-					"name": "not_null"
+					"name": "not_null",
+					"type": "bool"
 				},
 				{
 					"name": "fk_table"
