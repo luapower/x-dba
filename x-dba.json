@@ -3,9 +3,50 @@
 		"type": "pagelist",
 		"title": "DB Admin",
 		"items": [
-			"dba17",
-			"dba_field_types_grid"
+			"dba26",
+			"dba_field_types_grid",
+			"dba20"
 		]
+	},
+	"dba_field_types_rowset": {
+		"type": "rowset",
+		"pk": "name",
+		"fields": {
+			"name": {},
+			"sql": {},
+			"type": {},
+			"description": {}
+		}
+	},
+	"dba_tables_rowset": {
+		"type": "rowset",
+		"pk": "name",
+		"fields": {
+			"name": {},
+			"description": {}
+		}
+	},
+	"dba_fields_rowset": {
+		"type": "rowset",
+		"pk": "table name",
+		"fields": {
+			"table": {
+				"fk_rowset": "dba_tables_rowset",
+				"fk_col": "name"
+			},
+			"name": {},
+			"type": {
+				"fk_rowset": "dba_field_types_rowset",
+				"fk_col": "name"
+			},
+			"not_null": {
+				"type": "bool",
+				"default": true
+			},
+			"fk_table": {},
+			"fk_field": {},
+			"description": {}
+		}
 	},
 	"dba_field_types_grid": {
 		"type": "grid",
@@ -30,15 +71,20 @@
 	"dba17": {
 		"type": "split",
 		"item1": "dba_tables_grid",
-		"item2": "dba_fields_grid",
+		"item2": "dba23",
 		"title": "Tables & Fields",
 		"fixed_size": 162
 	},
 	"dba_tables_grid": {
 		"type": "grid",
+		"param_nav_gid": "dba_schemas_grid",
+		"params": "schema=name",
 		"static_rowset": {
 			"pk": "name",
 			"fields": [
+				{
+					"name": "schema"
+				},
 				{
 					"name": "name"
 				},
@@ -46,15 +92,23 @@
 					"name": "description"
 				}
 			]
-		}
+		},
+		"save_row_on": "manual",
+		"insert_row_on": "manual",
+		"remove_row_on": "manual",
+		"exit_edit_on_lost_focus": true,
+		"save_row_states": true
 	},
 	"dba_fields_grid": {
 		"type": "grid",
 		"param_nav_gid": "dba_tables_grid",
-		"params": "table=name",
+		"params": "schema=schema table=name",
 		"static_rowset": {
 			"pk": "name",
 			"fields": [
+				{
+					"name": "schema"
+				},
 				{
 					"name": "table"
 				},
@@ -83,6 +137,112 @@
 				}
 			]
 		},
-		"col.table.text": "Table"
+		"col.table.text": "Table",
+		"remove_row_on": "manual",
+		"insert_row_on": "manual",
+		"save_row_on": "manual",
+		"save_row_states": true
+	},
+	"dba20": {
+		"type": "cssgrid",
+		"title": "SQL Dump",
+		"sizes_x": "auto",
+		"sizes_y": "auto",
+		"items": [
+			"dba21"
+		]
+	},
+	"dba21": {
+		"type": "split",
+		"item1": "dba22",
+		"item2": {
+			"type": "widget_placeholder"
+		},
+		"orientation": "vertical",
+		"fixed_size": 573
+	},
+	"dba22": {
+		"type": "grid"
+	},
+	"dba23": {
+		"type": "split",
+		"item1": "dba_fields_grid",
+		"item2": "dba24",
+		"fixed_size": 479,
+		"orientation": "vertical"
+	},
+	"dba24": {
+		"type": "cssgrid",
+		"sizes_x": "auto",
+		"sizes_y": "auto",
+		"items": [
+			"dba25"
+		]
+	},
+	"dba25": {
+		"type": "sql_editor"
+	},
+	"dba26": {
+		"type": "split",
+		"item1": "dba_schemas_grid",
+		"item2": "dba28",
+		"title": "DB Schemas",
+		"fixed_size": 129
+	},
+	"dba_schemas_grid": {
+		"type": "grid",
+		"static_rowset": {
+			"fields": [
+				{
+					"name": "name"
+				}
+			]
+		}
+	},
+	"dba28": {
+		"type": "split",
+		"item1": "dba17",
+		"item2": "dba_schema_changes_grid",
+		"orientation": "vertical",
+		"fixed_size": 646
+	},
+	"dba_schema_changes_grid": {
+		"type": "grid",
+		"param_nav_gid": "dba_schemas_grid",
+		"params": "schema=name",
+		"static_rowset": {
+			"fields": [
+				{
+					"name": "schema"
+				},
+				{
+					"name": "op"
+				},
+				{
+					"name": "table"
+				},
+				{
+					"name": "field"
+				},
+				{
+					"name": "old_name"
+				},
+				{
+					"name": "type"
+				},
+				{
+					"name": "not_null"
+				},
+				{
+					"name": "fk_table"
+				},
+				{
+					"name": "fk_field"
+				},
+				{
+					"name": "sql"
+				}
+			]
+		}
 	}
 }
