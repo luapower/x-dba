@@ -4,8 +4,8 @@
 		"title": "DB Admin",
 		"items": [
 			"dba26",
-			"dba_field_types_grid",
-			"dba20"
+			"dba_connections_grid",
+			"dba_field_types_grid"
 		]
 	},
 	"dba_field_types_grid": {
@@ -16,10 +16,31 @@
 					"name": "name"
 				},
 				{
-					"name": "sql"
+					"name": "sql_type"
 				},
 				{
-					"name": "type"
+					"name": "charset"
+				},
+				{
+					"name": "collation"
+				},
+				{
+					"name": "not_null",
+					"type": "bool"
+				},
+				{
+					"name": "pk",
+					"type": "bool"
+				},
+				{
+					"name": "auto_increment",
+					"type": "bool"
+				},
+				{
+					"name": "default"
+				},
+				{
+					"name": "ui_type"
 				},
 				{
 					"name": "description"
@@ -33,12 +54,45 @@
 		"item1": "dba_tables_grid",
 		"item2": "dba23",
 		"title": "Tables & Fields",
-		"fixed_size": 162
+		"fixed_size": 305
+	},
+	"dba_schemas_grid": {
+		"type": "grid",
+		"tree_col": "name",
+		"static_rowset": {
+			"pk": "qname",
+			"parent_col": "parent_schema",
+			"fields": [
+				{
+					"name": "qname"
+				},
+				{
+					"name": "name"
+				},
+				{
+					"name": "parent_schema"
+				},
+				{
+					"name": "connection",
+					"lookup_nav_gid": "dba_connections_grid",
+					"lookup_cols": "name",
+					"display_col": "name"
+				},
+				{
+					"name": "size",
+					"type": "filesize",
+					"filesize_magnitude": "GB",
+					"filesize_decimals": 1,
+					"filesize_min": 0.05
+				}
+			]
+		},
+		"col.name.text": "Schema"
 	},
 	"dba_tables_grid": {
 		"type": "grid",
 		"param_nav_gid": "dba_schemas_grid",
-		"params": "schema=name",
+		"params": "schema=qname",
 		"static_rowset": {
 			"pk": "schema name",
 			"fields": [
@@ -49,6 +103,22 @@
 					"name": "name"
 				},
 				{
+					"name": "auto_increment",
+					"type": "number",
+					"nosave": true
+				},
+				{
+					"name": "size",
+					"type": "filesize",
+					"filesize_magnitude": "MB",
+					"nosave": true
+				},
+				{
+					"name": "row_count",
+					"type": "number",
+					"nosave": true
+				},
+				{
 					"name": "description"
 				}
 			]
@@ -57,7 +127,9 @@
 		"insert_row_on": "manual",
 		"remove_row_on": "manual",
 		"exit_edit_on_lost_focus": true,
-		"save_row_states": true
+		"save_row_states": true,
+		"col.name.text": "Table",
+		"col.row_count.text": "Rows"
 	},
 	"dba_fields_grid": {
 		"type": "grid",
@@ -83,19 +155,47 @@
 				{
 					"name": "type",
 					"lookup_nav_gid": "dba_field_types_grid",
-					"lookup_col": "name",
+					"lookup_cols": "name",
 					"display_col": "name"
+				},
+				{
+					"name": "sql_type",
+					"null_lookup_col": "type"
+				},
+				{
+					"name": "charset",
+					"null_lookup_col": "type"
+				},
+				{
+					"name": "collation",
+					"null_lookup_col": "type"
 				},
 				{
 					"name": "not_null",
 					"type": "bool",
-					"default": true
+					"null_lookup_col": "type"
 				},
 				{
-					"name": "fk_table"
+					"name": "pk",
+					"type": "bool",
+					"null_lookup_col": "type"
 				},
 				{
-					"name": "fk_field"
+					"name": "auto_increment",
+					"type": "bool",
+					"null_lookup_col": "type"
+				},
+				{
+					"name": "uk",
+					"type": "bool"
+				},
+				{
+					"name": "fk_table",
+					"null_lookup_col": "type"
+				},
+				{
+					"name": "fk_field",
+					"null_lookup_col": "type"
 				},
 				{
 					"name": "description"
@@ -103,10 +203,11 @@
 			]
 		},
 		"col.table.text": "Table",
-		"remove_row_on": "manual",
+		"remove_row_on": "exit_row",
 		"insert_row_on": "manual",
 		"save_row_on": "manual",
-		"save_row_states": true
+		"save_row_states": true,
+		"col.name.text": "Field"
 	},
 	"dba20": {
 		"type": "cssgrid",
@@ -132,44 +233,33 @@
 	"dba23": {
 		"type": "split",
 		"item1": "dba_fields_grid",
-		"item2": "dba24",
-		"fixed_size": 479,
+		"item2": "dba36",
+		"fixed_size": 306,
 		"orientation": "vertical"
 	},
 	"dba24": {
 		"type": "cssgrid",
 		"sizes_x": "auto",
 		"sizes_y": "auto",
-		"items": [
-			"dba25"
-		]
+		"items": []
 	},
 	"dba25": {
-		"type": "sql_editor"
+		"type": "sql_editor",
+		"title": "SQL"
 	},
 	"dba26": {
 		"type": "split",
-		"item1": "dba_schemas_grid",
+		"item1": "dba34",
 		"item2": "dba28",
-		"title": "DB Schemas",
-		"fixed_size": 129
-	},
-	"dba_schemas_grid": {
-		"type": "grid",
-		"static_rowset": {
-			"fields": [
-				{
-					"name": "name"
-				}
-			]
-		}
+		"title": "Schemas",
+		"fixed_size": 275
 	},
 	"dba28": {
 		"type": "split",
 		"item1": "dba17",
-		"item2": "dba_schema_changes_grid",
+		"item2": "dba30",
 		"orientation": "vertical",
-		"fixed_size": 646
+		"fixed_size": 618
 	},
 	"dba_schema_changes_grid": {
 		"type": "grid",
@@ -209,6 +299,115 @@
 					"name": "sql"
 				}
 			]
+		},
+		"save_row_remove_on": "exit_row",
+		"title": "Changes"
+	},
+	"dba30": {
+		"type": "pagelist",
+		"items": [
+			"dba_schema_changes_grid",
+			"dba31"
+		]
+	},
+	"dba31": {
+		"type": "cssgrid",
+		"sizes_x": "auto",
+		"sizes_y": "auto",
+		"items": [
+			"dba32"
+		],
+		"title": "SQL"
+	},
+	"dba32": {
+		"type": "sql_editor"
+	},
+	"dba_connections_grid": {
+		"type": "grid",
+		"title": "Connections",
+		"static_rowset": {
+			"fields": [
+				{
+					"name": "name"
+				},
+				{
+					"name": "host",
+					"default": "127.0.0.1"
+				},
+				{
+					"name": "port",
+					"type": "number",
+					"default": 3306
+				},
+				{
+					"name": "user",
+					"default": "root"
+				},
+				{
+					"name": "pass"
+				},
+				{
+					"name": "description"
+				}
+			]
 		}
+	},
+	"dba34": {
+		"type": "split",
+		"item1": "dba_schemas_grid",
+		"item2": "dba40",
+		"orientation": "vertical",
+		"fixed_size": 744
+	},
+	"dba36": {
+		"type": "pagelist",
+		"items": [
+			"dba_table_data_grid",
+			"dba25",
+			"dba_init_data_grid_switcher"
+		]
+	},
+	"dba_init_data_grid": {
+		"type": "grid",
+		"title": "Data"
+	},
+	"dba_init_data_grid_switcher": {
+		"type": "widget_switcher",
+		"title": "Init Data",
+		"nav_gid": "dba_tables_grid",
+		"item_gid_format": "init_data_grid_for_{schema}_{name}"
+	},
+	"dba_table_data_grid": {
+		"type": "grid",
+		"param_nav_gid": "dba_tables_grid",
+		"params": "schema name",
+		"title": "Data",
+		"rowset_name": "dba_table_data",
+		"can_add_rows": false,
+		"can_remove_rows": false,
+		"can_change_rows": false
+	},
+	"dba40": {
+		"type": "cssgrid",
+		"sizes_x": "auto",
+		"sizes_y": "auto",
+		"items": [
+			"dba50"
+		]
+	},
+	"dba42": {
+		"type": "grid_dropdown",
+		"nav_gid": "dba_schemas_grid",
+		"col": "connection",
+		"align_x": "stretch",
+		"align_y": "start"
+	},
+	"dba42.dropdown": {
+		"col": "connection"
+	},
+	"dba50": {
+		"type": "lookup_dropdown",
+		"nav_gid": "dba_schemas_grid",
+		"col": "connection"
 	}
 }
