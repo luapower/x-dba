@@ -141,6 +141,7 @@ action['dba_schema_fields.json'] = function()
 				information_schema.columns c
 		]])) do
 			mkbool(row, 'not_null pk uk auto_increment')
+			row.index = tonumber(row.index) --retardedly exposed as bigint
 			row.schema = ns..'.'..row.schema
 			infer_type(row, types)
 			add(t, row)

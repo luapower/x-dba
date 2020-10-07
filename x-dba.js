@@ -150,15 +150,6 @@
 		dba_tables_grid.insert_rows(tables, {row_state: {nosave: true, is_new: false}})
 	}
 
-	function update_table_data() {
-		let tg = window.dba_tables_grid
-		let dg = window.dba_table_data_grid
-		if (!(tg && dg))
-			return
-		dg.rowset_name = 'dba_table_data'
-		dg.reload({})
-	}
-
 	document.on('dba_tables_grid.bind', function(e, on) {
 		e.on('row_changed', update_changes, on)
 		if (on) {
