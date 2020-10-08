@@ -133,10 +133,21 @@
 	}
 
 	function schemas_loaded(schemas) {
-		dba_schemas_grid.insert_rows(schemas, {row_state: {nosave: true, is_new: false}})
+		let sg = dba_schemas_grid
+		sg.insert_rows(schemas, {row_state: {nosave: true, is_new: false}})
+	}
+
+	function schema_row_changed(row) {
+		let sg = dba_schemas_grid
+		let conn   = sg.cell_val(row, 'connection')
+		let schema = sg.cell_val(row, 'schema')
+		sg.set_cell_val(row, 'qschema', conn && schema ? conn+'.'+schema : null)
+		row.static = !conn
 	}
 
 	document.on('dba_schemas_grid.bind', function(e, on) {
+		let sg = dba_schemas_grid
+		sg.on('row_changed', schema_row_changed, on)
 		if (on) {
 			inherit_schemas()
 			ajax({
@@ -147,7 +158,7 @@
 	})
 
 	function tables_loaded(tables) {
-		dba_tables_grid.insert_rows(tables, {row_state: {nosave: true, is_new: false}})
+		dba_tables_grid.insert_rows(tables, {row_state: {is_new: false}})
 	}
 
 	document.on('dba_tables_grid.bind', function(e, on) {
@@ -165,7 +176,7 @@
 		for (let row of fields) {
 			row.sql_type
 		}
-		dba_fields_grid.insert_rows(fields, {row_state: {nosave: true, is_new: false}})
+		dba_fields_grid.insert_rows(fields, {row_state: {is_new: false}})
 	}
 
 	document.on('dba_fields_grid.bind', function(e, on) {

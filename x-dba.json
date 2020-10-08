@@ -64,13 +64,15 @@
 			"parent_col": "parent_schema",
 			"fields": [
 				{
-					"name": "qname"
+					"name": "qname",
+					"editable": false
 				},
 				{
 					"name": "name"
 				},
 				{
-					"name": "parent_schema"
+					"name": "parent_schema",
+					"editable": false
 				},
 				{
 					"name": "connection",
@@ -83,7 +85,9 @@
 					"type": "filesize",
 					"filesize_magnitude": "GB",
 					"filesize_decimals": 1,
-					"filesize_min": 0.05
+					"filesize_min": 0.05,
+					"nosave": true,
+					"editable": false
 				}
 			]
 		},
@@ -97,7 +101,8 @@
 			"pk": "schema name",
 			"fields": [
 				{
-					"name": "schema"
+					"name": "schema",
+					"editable": false
 				},
 				{
 					"name": "name"
@@ -105,17 +110,20 @@
 				{
 					"name": "auto_increment",
 					"type": "number",
+					"editable": false,
 					"nosave": true
 				},
 				{
 					"name": "size",
 					"type": "filesize",
 					"filesize_magnitude": "MB",
+					"editable": false,
 					"nosave": true
 				},
 				{
 					"name": "row_count",
 					"type": "number",
+					"editable": false,
 					"nosave": true
 				},
 				{
@@ -187,7 +195,9 @@
 				},
 				{
 					"name": "uk",
-					"type": "bool"
+					"type": "bool",
+					"nosave": true,
+					"editable": false
 				},
 				{
 					"name": "fk_table",

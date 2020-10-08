@@ -48,7 +48,7 @@ action['dba_schemas.json'] = function()
 	for ns in pairs(conn_names) do
 		local dbs = query_on(ns, 'show databases')
 		for _,db in ipairs(dbs) do
-			local size = query_on(ns, [[
+			local size = query1_on(ns, [[
 				select
 					sum(data_length + index_length)
 				from
@@ -154,7 +154,7 @@ function rowset.dba_table_data()
 	local params = json(args'params')[1]
 	local ns, schema = params.schema:match'^([^%.]+)%.(.*)$'
 	local table = params.name
-	if not ns then return {} end
+	if not ns or not table then return {} end
 	return sql_rowset{
 		db = ns,
 		select_all = 'select * from '..schema..'.'..table,
