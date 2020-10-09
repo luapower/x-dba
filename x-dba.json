@@ -68,17 +68,17 @@
 					"editable": false
 				},
 				{
+					"name": "connection",
+					"lookup_nav_gid": "dba_connections_grid",
+					"lookup_col": "name",
+					"display_col": "name"
+				},
+				{
 					"name": "name"
 				},
 				{
 					"name": "parent_schema",
 					"editable": false
-				},
-				{
-					"name": "connection",
-					"lookup_nav_gid": "dba_connections_grid",
-					"lookup_col": "name",
-					"display_col": "name"
 				},
 				{
 					"name": "size",
@@ -88,10 +88,20 @@
 					"filesize_min": 0.05,
 					"nosave": true,
 					"editable": false
+				},
+				{
+					"name": "system",
+					"type": "bool",
+					"editable": false,
+					"nosave": true
 				}
 			]
 		},
-		"col.name.text": "Schema"
+		"col.name.text": "Database",
+		"save_new_row_on": "manual",
+		"save_row_on": "manual",
+		"save_row_remove_on": "manual",
+		"col.connection.text": "Server"
 	},
 	"dba_tables_grid": {
 		"type": "grid",
@@ -269,14 +279,17 @@
 		"item1": "dba17",
 		"item2": "dba30",
 		"orientation": "vertical",
-		"fixed_size": 618
+		"fixed_size": 677
 	},
 	"dba_schema_changes_grid": {
 		"type": "grid",
 		"param_nav_gid": "dba_schemas_grid",
-		"params": "schema=name",
+		"params": "connection=connection schema=name",
 		"static_rowset": {
 			"fields": [
+				{
+					"name": "connection"
+				},
 				{
 					"name": "schema"
 				},
@@ -323,6 +336,7 @@
 			],
 			"rows": [
 				[
+					null,
 					"ck_db",
 					"create_table",
 					"agency",
@@ -338,6 +352,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"add_field",
 					"agency",
@@ -353,6 +368,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"create_table",
 					"client",
@@ -368,6 +384,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"add_field",
 					"client",
@@ -383,6 +400,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"add_field",
 					"client",
@@ -398,6 +416,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"add_field",
 					"client",
@@ -413,6 +432,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"add_field",
 					"client",
@@ -428,6 +448,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"create_table",
 					"branch",
@@ -443,6 +464,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"add_field",
 					"branch",
@@ -458,6 +480,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"add_field",
 					"branch",
@@ -473,6 +496,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"add_field",
 					"branch",
@@ -488,6 +512,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"add_field",
 					"branch",
@@ -503,6 +528,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"add_field",
 					"branch",
@@ -518,6 +544,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"add_field",
 					"branch",
@@ -533,6 +560,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"add_field",
 					"branch",
@@ -548,6 +576,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"add_field",
 					"branch",
@@ -563,6 +592,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"add_field",
 					"branch",
@@ -578,6 +608,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"create_table",
 					"user",
@@ -593,6 +624,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"add_field",
 					"user",
@@ -608,6 +640,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"add_field",
 					"user",
@@ -623,6 +656,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"add_field",
 					"user",
@@ -638,6 +672,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"add_field",
 					"user",
@@ -653,6 +688,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"add_field",
 					"user",
@@ -668,6 +704,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"add_field",
 					"user",
@@ -683,6 +720,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"add_field",
 					"user",
@@ -698,6 +736,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"add_field",
 					"user",
@@ -713,6 +752,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"add_field",
 					"user",
@@ -728,6 +768,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"add_field",
 					"user",
@@ -743,6 +784,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"add_field",
 					"user",
@@ -758,6 +800,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"add_field",
 					"user",
@@ -773,6 +816,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"add_field",
 					"user",
@@ -788,6 +832,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"add_field",
 					"user",
@@ -803,6 +848,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"add_field",
 					"user",
@@ -818,6 +864,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"add_field",
 					"user",
@@ -833,6 +880,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"add_field",
 					"user",
@@ -848,6 +896,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"add_field",
 					"user",
@@ -863,6 +912,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"create_table",
 					"user_agency",
@@ -878,6 +928,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"add_field",
 					"user_agency",
@@ -893,6 +944,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"add_field",
 					"user_agency",
@@ -908,6 +960,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"create_table",
 					"user_role",
@@ -923,6 +976,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"add_field",
 					"user_role",
@@ -938,6 +992,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"add_field",
 					"user_role",
@@ -953,6 +1008,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"create_table",
 					"user_client",
@@ -968,6 +1024,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"add_field",
 					"user_client",
@@ -983,6 +1040,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"add_field",
 					"user_client",
@@ -998,6 +1056,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"create_table",
 					"user_branch",
@@ -1013,6 +1072,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"add_field",
 					"user_branch",
@@ -1028,6 +1088,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"add_field",
 					"user_branch",
@@ -1043,6 +1104,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"create_table",
 					"user_project",
@@ -1058,6 +1120,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"add_field",
 					"user_project",
@@ -1073,6 +1136,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"add_field",
 					"user_project",
@@ -1088,6 +1152,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"create_table",
 					"role",
@@ -1103,6 +1168,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"add_field",
 					"role",
@@ -1118,6 +1184,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"create_table",
 					"role_role",
@@ -1133,6 +1200,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"create_table",
 					"feature",
@@ -1148,6 +1216,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"create_table",
 					"role_feature",
@@ -1163,6 +1232,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"create_table",
 					"shopper",
@@ -1178,6 +1248,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"create_table",
 					"shopper_region",
@@ -1193,6 +1264,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"create_table",
 					"shopper_branch",
@@ -1208,6 +1280,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"create_table",
 					"shopper_client",
@@ -1223,6 +1296,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"create_table",
 					"shopper_cert",
@@ -1238,6 +1312,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"create_table",
 					"project",
@@ -1253,6 +1328,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"create_table",
 					"project_branch",
@@ -1268,6 +1344,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"create_table",
 					"project_pay_slot",
@@ -1283,6 +1360,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"create_table",
 					"question",
@@ -1298,6 +1376,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"create_table",
 					"section",
@@ -1313,6 +1392,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"create_table",
 					"qn",
@@ -1328,6 +1408,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"create_table",
 					"qn_question",
@@ -1343,6 +1424,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"create_table",
 					"qn_section",
@@ -1358,6 +1440,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"create_table",
 					"qn_pay_slot",
@@ -1373,6 +1456,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"create_table",
 					"scale",
@@ -1388,6 +1472,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"create_table",
 					"order",
@@ -1403,6 +1488,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"create_table",
 					"order_file",
@@ -1418,6 +1504,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"create_table",
 					"order_pay",
@@ -1433,6 +1520,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"create_table",
 					"answer",
@@ -1448,6 +1536,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"create_table",
 					"answer_file",
@@ -1463,6 +1552,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"create_table",
 					"talk",
@@ -1478,6 +1568,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"create_table",
 					"user_channel",
@@ -1493,6 +1584,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"create_table",
 					"ctable",
@@ -1508,6 +1600,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"create_table",
 					"cfield",
@@ -1523,6 +1616,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"create_table",
 					"role_field",
@@ -1538,6 +1632,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"create_table",
 					"access_log",
@@ -1553,6 +1648,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"create_table",
 					"file",
@@ -1568,6 +1664,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"create_table",
 					"email_template",
@@ -1583,6 +1680,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"create_table",
 					"lang",
@@ -1598,6 +1696,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"add_field",
 					"lang",
@@ -1613,6 +1712,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"add_field",
 					"lang",
@@ -1628,6 +1728,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"create_table",
 					"qn_file_slot",
@@ -1643,6 +1744,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"create_table",
 					"question_file_slot",
@@ -1658,6 +1760,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"create_table",
 					"country",
@@ -1673,6 +1776,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"add_field",
 					"country",
@@ -1688,6 +1792,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"add_field",
 					"country",
@@ -1703,6 +1808,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"create_table",
 					"region",
@@ -1718,6 +1824,7 @@
 					null
 				],
 				[
+					null,
 					"ck_db",
 					"create_table",
 					"industry",
@@ -1735,7 +1842,9 @@
 			]
 		},
 		"save_row_remove_on": "exit_row",
-		"title": "Changes"
+		"title": "Changes",
+		"col.schema.text": "Database",
+		"col.connection.text": "Server"
 	},
 	"dba30": {
 		"type": "pagelist",

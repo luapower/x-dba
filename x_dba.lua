@@ -43,11 +43,18 @@ do
 	end
 end
 
+local system_schemas = {
+	information_schema=1,
+	performance_schema=1,
+	mysql=1,
+}
+
 action['dba_schemas.json'] = function()
 	local t = {}
 	for ns in pairs(conn_names) do
 		local dbs = query_on(ns, 'show databases')
 		for _,db in ipairs(dbs) do
+			local system = system_schemas[db] and true or false
 			local size = query1_on(ns, [[
 				select
 					sum(data_length + index_length)
@@ -56,7 +63,13 @@ action['dba_schemas.json'] = function()
 				where
 					table_schema = ?
 			]], db)
-			add(t, {connection = ns, qname = ns..'.'..db, name = db, size = size})
+			add(t, {
+				connection = ns,
+				qname = ns..'.'..db,
+				name = db,
+				size = size,
+				system = system,
+			})
 		end
 	end
 	return t

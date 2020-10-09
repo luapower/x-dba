@@ -66,11 +66,18 @@
 	function update_changes() {
 		if (update_changes_barrier)
 			return
+		let sg = dba_schemas_grid
 		let tg = dba_tables_grid
 		let fg = dba_fields_grid
 		let cg = dba_schema_changes_grid
 		let rows = []
-		for (let row of dba_tables_grid.all_rows) {
+		for (let row of sg.all_rows)
+			if (row.is_new) {
+				let conn   = sg.cell_val(row, 'connection')
+				let schema = sg.cell_val(row, 'name')
+				rows.push({connection: conn, schema: schema, op: 'create_database'})
+			}
+		for (let row of tg.all_rows) {
 			let schema = tg.cell_val(row, 'schema')
 			let table  = tg.cell_val(row, 'name')
 			if (!(row.is_new && row.removed)) {
@@ -132,22 +139,56 @@
 		cg.reset()
 	}
 
-	function schemas_loaded(schemas) {
+	function save_schema_row(row) {
 		let sg = dba_schemas_grid
-		sg.insert_rows(schemas, {row_state: {nosave: true, is_new: false}})
+		if (!row.is_new) return
+		let conn   = e.cell_val(row, 'connection')
+		let schema = e.cell_val(row, 'name')
+		if (!conn) return
+		//let req = ajax({url: url(['dba_create_database', conn, schema]), async: false})
+		//if (!req.fail)
 	}
 
-	function schema_row_changed(row) {
+	function schemas_loaded(schemas) {
+		let sg = dba_schemas_grid
+		for (let row of sg.all_rows)
+			row.db_created = false
+		sg.insert_rows(schemas, {row_state: {is_new: false, db_created: true}})
+		sg.begin_update()
+		for (let row of sg.all_rows) {
+			if (sg.cell_val(row, 'system')) {
+				row.nosave = true
+				row.editable = false
+			}
+			if (!row.db_created && sg.cell_val(row, 'connection'))
+				sg.set_row_is_new(row, true)
+		}
+		sg.end_update()
+	}
+
+	function schemas_cell_val_changed(row) {
 		let sg = dba_schemas_grid
 		let conn   = sg.cell_val(row, 'connection')
-		let schema = sg.cell_val(row, 'schema')
-		sg.set_cell_val(row, 'qschema', conn && schema ? conn+'.'+schema : null)
-		row.static = !conn
+		let schema = sg.cell_val(row, 'name')
+		let qname  = schema ? (conn ? conn+'.' : '') + schema : null
+		sg.set_cell_val(row, 'qname', qname)
+		update_changes()
+	}
+
+	function schemas_rows_changed(rows) {
+		for (let row of rows)
+			schemas_cell_val_changed(row)
 	}
 
 	document.on('dba_schemas_grid.bind', function(e, on) {
 		let sg = dba_schemas_grid
-		sg.on('row_changed', schema_row_changed, on)
+		sg.on('rows_changed', schemas_rows_changed, on)
+		sg.on('cell_val_changed', schemas_cell_val_changed, on)
+		sg.save_row = save_schema_row
+		sg.col_attrs = {name: {}}
+		sg.col_attrs.name.format = function(v, row) {
+			return sg.cell_val(row, 'system') ? div({style: 'color: #ccc'}, v) : v
+		}
 		if (on) {
 			inherit_schemas()
 			ajax({
@@ -162,7 +203,7 @@
 	}
 
 	document.on('dba_tables_grid.bind', function(e, on) {
-		e.on('row_changed', update_changes, on)
+		e.on('rows_changed', update_changes, on)
 		if (on) {
 			inherit_schemas()
 			ajax({
@@ -180,7 +221,7 @@
 	}
 
 	document.on('dba_fields_grid.bind', function(e, on) {
-		e.on('row_changed', update_changes, on)
+		e.on('rows_changed', update_changes, on)
 		if (on) {
 			inherit_schemas()
 			ajax({
