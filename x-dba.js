@@ -187,7 +187,7 @@
 		sg.save_row = save_schema_row
 		sg.col_attrs = {name: {}}
 		sg.col_attrs.name.format = function(v, row) {
-			return sg.cell_val(row, 'system') ? div({style: 'color: #ccc'}, v) : v
+			return row && sg.cell_val(row, 'system') ? div({style: 'color: #ccc'}, v) : v
 		}
 		if (on) {
 			inherit_schemas()

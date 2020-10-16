@@ -272,7 +272,7 @@
 		"item1": "dba34",
 		"item2": "dba28",
 		"title": "Schemas",
-		"fixed_size": 275
+		"fixed_size": 263
 	},
 	"dba28": {
 		"type": "split",
@@ -335,6 +335,22 @@
 				}
 			],
 			"rows": [
+				[
+					"dev",
+					"ck_db",
+					"create_database",
+					null,
+					null,
+					null,
+					null,
+					null,
+					null,
+					null,
+					null,
+					null,
+					null,
+					null
+				],
 				[
 					null,
 					"ck_db",
@@ -1898,9 +1914,9 @@
 	"dba34": {
 		"type": "split",
 		"item1": "dba_schemas_grid",
-		"item2": "dba40",
+		"item2": "dba51",
 		"orientation": "vertical",
-		"fixed_size": 744
+		"fixed_size": 641
 	},
 	"dba36": {
 		"type": "pagelist",
@@ -1934,9 +1950,7 @@
 		"type": "cssgrid",
 		"sizes_x": "auto",
 		"sizes_y": "auto",
-		"items": [
-			"dba50"
-		]
+		"items": []
 	},
 	"dba42": {
 		"type": "grid_dropdown",
@@ -1952,5 +1966,28 @@
 		"type": "lookup_dropdown",
 		"nav_gid": "dba_schemas_grid",
 		"col": "connection"
+	},
+	"dba51": {
+		"type": "pagelist",
+		"items": [
+			"dba52"
+		]
+	},
+	"dba52": {
+		"type": "cssgrid",
+		"title": "Sizes",
+		"sizes_x": "auto",
+		"sizes_y": "auto",
+		"items": [
+			"dba53"
+		]
+	},
+	"dba53": {
+		"type": "chart",
+		"nav_gid": "dba_schemas_grid",
+		"sum_col": "size",
+		"cat_cols": "size",
+		"cat_cols.connection.range_freq": null,
+		"cat_cols.size.range_freq": 1000000
 	}
 }
