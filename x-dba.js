@@ -180,8 +180,7 @@
 			schemas_cell_val_changed(row)
 	}
 
-	document.on('dba_schemas_grid.bind', function(e, on) {
-		let sg = dba_schemas_grid
+	document.on('dba_schemas_grid.bind', function(sg, on) {
 		sg.on('rows_changed', schemas_rows_changed, on)
 		sg.on('cell_val_changed', schemas_cell_val_changed, on)
 		sg.save_row = save_schema_row
