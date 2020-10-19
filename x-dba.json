@@ -69,7 +69,7 @@
 				},
 				{
 					"name": "connection",
-					"lookup_nav_gid": "dba_connections_grid",
+					"lookup_nav_id": "dba_connections_grid",
 					"lookup_col": "name",
 					"display_col": "name"
 				},
@@ -105,7 +105,7 @@
 	},
 	"dba_tables_grid": {
 		"type": "grid",
-		"param_nav_gid": "dba_schemas_grid",
+		"param_nav_id": "dba_schemas_grid",
 		"params": "schema=qname",
 		"static_rowset": {
 			"pk": "schema name",
@@ -151,7 +151,7 @@
 	},
 	"dba_fields_grid": {
 		"type": "grid",
-		"param_nav_gid": "dba_tables_grid",
+		"param_nav_id": "dba_tables_grid",
 		"params": "schema=schema table=name",
 		"static_rowset": {
 			"pk": "schema table name",
@@ -172,7 +172,7 @@
 				},
 				{
 					"name": "type",
-					"lookup_nav_gid": "dba_field_types_grid",
+					"lookup_nav_id": "dba_field_types_grid",
 					"lookup_col": "name",
 					"display_col": "name"
 				},
@@ -283,7 +283,7 @@
 	},
 	"dba_schema_changes_grid": {
 		"type": "grid",
-		"param_nav_gid": "dba_schemas_grid",
+		"param_nav_id": "dba_schemas_grid",
 		"params": "connection=connection schema=name",
 		"static_rowset": {
 			"fields": [
@@ -1933,12 +1933,12 @@
 	"dba_init_data_grid_switcher": {
 		"type": "widget_switcher",
 		"title": "Init Data",
-		"nav_gid": "dba_tables_grid",
-		"item_gid_format": "init_data_grid_for_{schema}_{name}"
+		"nav_id": "dba_tables_grid",
+		"item_id_format": "init_data_grid_for_{schema}_{name}"
 	},
 	"dba_table_data_grid": {
 		"type": "grid",
-		"param_nav_gid": "dba_tables_grid",
+		"param_nav_id": "dba_tables_grid",
 		"params": "schema name",
 		"title": "Data",
 		"rowset_name": "dba_table_data",
@@ -1954,7 +1954,7 @@
 	},
 	"dba42": {
 		"type": "grid_dropdown",
-		"nav_gid": "dba_schemas_grid",
+		"nav_id": "dba_schemas_grid",
 		"col": "connection",
 		"align_x": "stretch",
 		"align_y": "start"
@@ -1964,7 +1964,7 @@
 	},
 	"dba50": {
 		"type": "lookup_dropdown",
-		"nav_gid": "dba_schemas_grid",
+		"nav_id": "dba_schemas_grid",
 		"col": "connection"
 	},
 	"dba51": {
@@ -1984,7 +1984,7 @@
 	},
 	"dba53": {
 		"type": "chart",
-		"nav_gid": "dba_schemas_grid",
+		"nav_id": "dba_schemas_grid",
 		"sum_col": "size",
 		"cat_cols": "size",
 		"cat_cols.connection.range_freq": null,

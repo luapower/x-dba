@@ -49,7 +49,7 @@
 		let tg = window.dba_tables_grid
 		let fg = window.dba_fields_grid
 		let cg = window.dba_schema_changes_grid
-		if (!(sg && tg && fg && cg))
+		if (!(sg && sg.attached && tg && tg.attached && fg && fg.attached && cg && cg.attached))
 			return
 		tg.begin_update()
 		fg.begin_update()
@@ -150,7 +150,9 @@
 	}
 
 	function schemas_loaded(schemas) {
-		let sg = dba_schemas_grid
+		let sg = window.dba_schemas_grid
+		if (!sg)
+			return
 		for (let row of sg.all_rows)
 			row.db_created = false
 		sg.insert_rows(schemas, {row_state: {is_new: false, db_created: true}})
@@ -198,7 +200,10 @@
 	})
 
 	function tables_loaded(tables) {
-		dba_tables_grid.insert_rows(tables, {row_state: {is_new: false}})
+		let tg = window.dba_tables_grid
+		if (!tg)
+			return
+		tg.insert_rows(tables, {row_state: {is_new: false}})
 	}
 
 	document.on('dba_tables_grid.bind', function(e, on) {
@@ -213,9 +218,9 @@
 	})
 
 	function fields_loaded(fields) {
-		for (let row of fields) {
-			row.sql_type
-		}
+		let fg = window.dba_fields_grid
+		if (!fg)
+			return
 		dba_fields_grid.insert_rows(fields, {row_state: {is_new: false}})
 	}
 
