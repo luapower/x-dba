@@ -1976,8 +1976,8 @@
 	"dba52": {
 		"type": "cssgrid",
 		"title": "Sizes",
-		"sizes_x": "auto",
-		"sizes_y": "auto",
+		"sizes_x": null,
+		"sizes_y": null,
 		"items": [
 			"dba53"
 		]
@@ -1988,6 +1988,8 @@
 		"sum_col": "size",
 		"cat_cols": "size",
 		"cat_cols.connection.range_freq": null,
-		"cat_cols.size.range_freq": 1000000
+		"cat_cols.size.range_freq": 1000000,
+		"pos_x": 1,
+		"pos_y": 1
 	}
 }

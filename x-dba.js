@@ -103,30 +103,30 @@
 				ft.table  = fg.cell_val(row, 'table')
 				ft.field  = fg.cell_val(row, 'name')
 				if (row.removed) {
-					let t = update({}, ft)
+					let t = assign_opt({}, ft)
 					t.op = 'drop_field'
 					rows.push(t)
 				} else if (row.modified) {
 					if (fg.cell_modified(row, 'name')) {
-						let t = update({}, ft)
+						let t = assign_opt({}, ft)
 						t.op = 'rename_field'
 						t.old_name = tg.cell_old_val(row, 'name')
 						rows.push(t)
 					}
 					if (fg.cell_modified(row, 'type')) {
-						let t = update({}, ft)
+						let t = assign_opt({}, ft)
 						t.op = 'change_type'
 						t.type = fg.cell_val(row, 'type')
 						rows.push(t)
 					}
 					if (fg.cell_modified(row, 'not_null')) {
-						let t = update({}, ft)
+						let t = assign_opt({}, ft)
 						t.op = 'change_not_null'
 						t.not_null = fg.cell_val(row, 'not_null')
 						rows.push(t)
 					}
 					if (fg.cell_modified(row, 'fk_table') || fg.cell_modified(row, 'fk_field')) {
-						let t = update({}, ft)
+						let t = assign_opt({}, ft)
 						t.op = 'change_fk'
 						t.fk_table = fg.cell_val(row, 'fk_table')
 						t.fk_field = fg.cell_val(row, 'fk_field')
