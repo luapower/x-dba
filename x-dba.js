@@ -49,7 +49,7 @@
 		let tg = window.dba_tables_grid
 		let fg = window.dba_fields_grid
 		let cg = window.dba_schema_changes_grid
-		if (!(sg && sg.attached && tg && tg.attached && fg && fg.attached && cg && cg.attached))
+		if (!(sg && sg.bound && tg && tg.bound && fg && fg.bound && cg && cg.bound))
 			return
 		tg.begin_update()
 		fg.begin_update()
