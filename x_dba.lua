@@ -52,21 +52,21 @@ local system_schemas = {
 action['dba_schemas.json'] = function()
 	local t = {}
 	for ns in pairs(conn_names) do
-		local dbs = query_on(ns, 'show databases')
-		for _,db in ipairs(dbs) do
-			local system = system_schemas[db] and true or false
-			local size = query1_on(ns, [[
+		local db = db(ns)
+		for _,sch in db:each_row'show databases' do
+			local system = system_schemas[sch] and true or false
+			local size = db:first_row([[
 				select
 					sum(data_length + index_length)
 				from
 					information_schema.tables
 				where
 					table_schema = ?
-			]], db)
+			]], sch)
 			add(t, {
 				connection = ns,
-				qname = ns..'.'..db,
-				name = db,
+				qname = ns..'.'..sch,
+				name = sch,
 				size = size,
 				system = system,
 			})
@@ -78,7 +78,7 @@ end
 action['dba_schema_tables.json'] = function()
 	local t = {}
 	for ns in pairs(conn_names) do
-		for _,row in ipairs(kv_query_on(ns, [[
+		for _,row in db(ns):each_row[[
 			select
 				table_schema as `schema`,
 				table_name as `name`,
@@ -87,7 +87,7 @@ action['dba_schema_tables.json'] = function()
 				table_rows as `row_count`
 			from
 				information_schema.tables
-		]])) do
+		]] do
 			mklower(row, 'schema name')
 			row.schema = ns..'.'..row.schema
 			add(t, row)
@@ -136,7 +136,7 @@ action['dba_schema_fields.json'] = function()
 	local t = {}
 	local types = load_field_types()
 	for ns in pairs(conn_names) do
-		for _,row in ipairs(kv_query_on(ns, [[
+		for _,row in db(ns):each_row[[
 			select
 				lower(c.table_schema) as `schema`,
 				lower(c.table_name) as `table`,
@@ -152,7 +152,7 @@ action['dba_schema_fields.json'] = function()
 				if(c.column_default, 'NULL', null) as `default`
 			from
 				information_schema.columns c
-		]])) do
+		]] do
 			mkbool(row, 'not_null pk uk auto_increment')
 			row.index = tonumber(row.index) --retardedly exposed as bigint
 			row.schema = ns..'.'..row.schema
