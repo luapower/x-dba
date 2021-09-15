@@ -1,6 +1,6 @@
 
 require'xmodule'
-require'xrowset_mysql'
+require'xrowset_sql'
 
 function dba_connections_grid()
 	local layer = xmodule_layer'ck'
