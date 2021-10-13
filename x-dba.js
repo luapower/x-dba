@@ -163,7 +163,7 @@
 				row.editable = false
 			}
 			if (!row.db_created && sg.cell_val(row, 'connection'))
-				sg.set_row_is_new(row, true)
+				sg.set_row_is_new(row)
 		}
 		sg.end_update()
 	}
