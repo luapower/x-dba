@@ -177,8 +177,8 @@
 		update_changes()
 	}
 
-	function schemas_rows_changed(rows) {
-		for (let row of rows)
+	function schemas_rows_changed() {
+		for (let row of sg.rows)
 			schemas_cell_val_changed(row)
 	}
 
