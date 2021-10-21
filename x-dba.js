@@ -160,7 +160,7 @@
 		for (let row of sg.all_rows) {
 			if (sg.cell_val(row, 'system')) {
 				row.nosave = true
-				row.editable = false
+				row.readonly = true
 			}
 			if (!row.db_created && sg.cell_val(row, 'connection'))
 				sg.set_row_is_new(row)
